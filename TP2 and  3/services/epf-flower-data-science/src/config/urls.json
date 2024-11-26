@@ -1,0 +1,11 @@
+{
+    "iris": {
+        "name": "iris",
+        "url": "https://www.kaggle.com/datasets/uciml/iris"
+    },
+
+    "crypto": {
+        "name": "crypto",
+        "url": "https://www.kaggle.com/datasets/bishop36/crypto-data"
+    }
+}
