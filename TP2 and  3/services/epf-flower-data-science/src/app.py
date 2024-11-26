@@ -1,30 +1,16 @@
 from fastapi import FastAPI
-from starlette.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
+from src.api.routes.data import router as data_router
 
-from src.api.router import router
+def get_application():
+    app = FastAPI()
 
+    # Include the routers
+    app.include_router(data_router)
 
-def get_application() -> FastAPI:
-    application = FastAPI(
-        title="epf-flower-data-science",
-        description="""Fast API""",
-        version="1.0.0",
-        redoc_url=None,
-    )
-
-    application.add_middleware(
-        CORSMiddleware,
-        allow_origins=["*"],
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
-
-    application.include_router(router)
-
-    @application.get("/")
+    # Define the root endpoint to redirect to the Swagger documentation
+    @app.get("/")
     async def root():
         return RedirectResponse(url="/docs")
-    
-    return application
+
+    return app

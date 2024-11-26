@@ -136,7 +136,7 @@ About the API workflow:
 - **Step 6: Access the dataset:**  Create a route in api/routes/data to download and save the contents of the following kaggle dataset in the src/data folder: https://www.kaggle.com/datasets/uciml/iris. If you're having too many problems, simply download the dataset from the kaggle website. documentation : https://www.geeksforgeeks.org/how-to-download-kaggle-datasets-into-jupyter-notebook/
 
 - **Step 7: Loading the Iris Flower dataset:** Add an endpoint to load the iris dataset file as a dataframe and return it as a json.
-
+  
 - **Step 8: Processing the dataset:** Add an endpoint to be able to perform the necessary processing on the data before being able to train a model with it.
 
 - **Step 9: Split in train and test:** Add an endpoint to split the iris dataset as train and test and send back a json with both
