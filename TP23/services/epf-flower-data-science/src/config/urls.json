@@ -1,0 +1,11 @@
+{
+    "iris": {
+        "name": "iris",
+        "url": "src/data/Iris.csv", 
+        "description": "Iris dataset in CSV format, stored locally"
+    },
+    "crypto": {
+        "name": "crypto",
+        "url": "src/data/Crypto.csv"
+    }
+}
