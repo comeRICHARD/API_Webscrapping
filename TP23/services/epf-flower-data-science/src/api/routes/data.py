@@ -9,7 +9,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
 from src.firestore import FirestoreClient  # Adjusted import for correct path
 
-
 router = APIRouter(
     prefix="/data",
     tags=["data"]
@@ -279,6 +278,54 @@ async def save_model_parameters():
         firestore_client.client.collection(collection_name).document(document_id).set(model_params)
 
         return JSONResponse(content={"message": "Parameters saved to Firestore successfully."})
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}")
+
+@router.get("/retrieve_parameters")
+async def retrieve_model_parameters():
+    """
+    Endpoint to retrieve model parameters from Firestore.
+    """
+    try:
+        # Initialize Firestore client
+        firestore_client = FirestoreClient()
+
+        # Define the collection and document ID
+        collection_name = 'parameters'
+        document_id = 'parameters'
+
+        # Use the existing 'get' method
+        parameters = firestore_client.get(collection_name, document_id)
+
+        return JSONResponse(content={"parameters": parameters})
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}")
+
+@router.post("/update_parameters")
+async def update_model_parameters(new_params: dict):
+    """
+    Endpoint to update or add model parameters in Firestore.
+
+    Args:
+        new_params (dict): Dictionary of parameters to update or add.
+
+    Returns:
+        JSONResponse: Confirmation message with the status.
+    """
+    try:
+        # Initialize Firestore client
+        firestore_client = FirestoreClient()
+
+        # Define the collection and document ID
+        collection_name = 'parameters'
+        document_id = 'parameters'
+
+        # Use the 'set' method to update or create the document with new parameters
+        firestore_client.client.collection(collection_name).document(document_id).set(new_params)
+
+        return JSONResponse(content={"message": "Parameters updated or added to Firestore successfully."})
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}")

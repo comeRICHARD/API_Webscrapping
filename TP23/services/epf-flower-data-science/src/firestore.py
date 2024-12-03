@@ -1,6 +1,8 @@
 import google.auth
 from google.cloud import firestore
+import os
 
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r"C:\Users\richa\Documents\5A\DataSources\API\APIWebscrapping\TP23\cometest-4e2e1-firebase-adminsdk-n8lxm-672ed4ac5b.json"
 
 class FirestoreClient:
     """Wrapper around a database"""
